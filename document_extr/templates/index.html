@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Integllegent Extractor Powered By GenAI</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body class="img js-fullheight" style="background-image: url('{% static "images/bg3.jpg" %}');">
+  <h1 class="box2" style="color: white;"><strong>&#160;&#160;Intelligent Extractor Powered By GenAI&#160;&#160;</strong></h1>
+
+<div class="loader_background" id ="loader_background" style="display: none;"> 
+  <div class="loader">
+    <div>
+      <ul>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+        <li>
+          <svg fill="currentColor" viewBox="0 0 90 120">
+            <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+          </svg>
+        </li>
+      </ul>
+    </div><span>Please wait, the file is processing...</span></div>
+
+  </div>
+
+
+  <h1 class="welcome" style="margin: 40px; margin-left: 60px;" >Welcome: {{ username }}</h1>
+  <div class="main-container">
+    <div class="pdf-processor-container">
+      <!-- <h1 style="margin-left: 30px;margin-right: 30px;" >Integllegent Extractor </h1> -->
+      <h1 style="margin-bottom: 50px">Upload File To Process</h1>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+      <div id="selected-file-info" class="selected-file-info" style="display: none;">
+        <h2>File Selected: <span id="file-name"></span></h2>
+      </div>
+      <div class="upload-section" id="upload-section">
+        <p class="subtitle">Please select the file to upload:</p>
+        <form method="post" enctype="multipart/form-data" id="file-upload-form" onsubmit="showProcessingMessage()">
+          {% csrf_token %}
+          <label for="file-input" class="btn-grad">Choose File</label>
+          <input type="file" name="file" id="file-input" class="file-input" onchange="updateFileName()">
+          <!-- <input  type="submit" value="Submit" class="btn-grad" style="margin-left: 10px;"> -->
+                <button class="btn-grad" type="submit">
+      <svg style="margin-right: 8px;" viewBox="0 0 640 512" fill="white" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path></svg>
+        <span> Upload</span>
+      </button>
+        </form>
+      </div>
+      <div id="processing-message" style="display: none; margin-top:10px;">Please wait, the file is processing...</div>
+    </div>
+
+    
+  </div>
+    <div class="file-process-div">
+    {% if processed %}
+      <div class="file-processed-container btn-grad "style="width:20%;margin-left:7%;">
+        <a href="{% url 'keyingscreen_view' %}?file_name={{ file_name }}" class="processed-btn" target="_blank">Keyingscreen</a>
+      </div>
+      <div id="selected-file-info2" class="selected-file-info2">
+        <h2 style="color: #000000;">File Processed: <span id="file-name">{{ file_name }}</span></h2>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function updateFileName() {
+      var input = document.getElementById('file-input');
+      var fileNameSpan = document.getElementById('file-name');
+      fileNameSpan.innerText = input.files[0].name;
+
+      // Show the "File Selected" section
+      var fileInfoDiv = document.getElementById('selected-file-info');
+      fileInfoDiv.style.display = 'block';
+
+      // $.ajax({
+      //     url : 'get_name.php',
+      //     success : function(data) {
+      //         console.log(data);
+      //     }
+      // });
+    }
+    function showProcessingMessage() {
+      // Show the processing message
+      var processingMessageDiv = document.getElementById('processing-message');
+      processingMessageDiv.style.display = 'block';
+      var loader =  document.getElementById('loader_background');
+      loader.style.display  = 'block'
+    }
+  </script>
+</body>
+</html>

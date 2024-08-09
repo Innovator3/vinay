@@ -1,0 +1,326 @@
+body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .form-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .fields-section {
+            /* background: linear-gradient(to left, #e4dbdb, #DBDBDB, #F2F2F2, #d7d3c2); */
+            background: linear-gradient(to left, #e4dbdb, #DBDBDB, #e4e2db, #d7d3c2);
+            flex: 40%; 
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid #ddd;
+            overflow-y: auto;
+            
+        }
+
+        .fields-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .fields-section .name-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .fields-section .name-label {
+            flex: 2;
+        }
+
+        .fields-section .name-input {
+            flex: 3;
+        }
+
+        .fields-section .name-field input {
+            border: 2px solid transparent;
+            width: 22em;
+            height: 2.5em;
+            padding-left: 0.8em;
+            outline: none;
+            overflow: hidden;
+            background-color: #F3F3F3;
+            border-radius: 10px;
+            transition: all 0.5s;
+        }
+          
+          .fields-section .name-field input:hover,
+          .fields-section .name-field input:focus {
+            border: 2px solid #4A9DEC;
+            box-shadow: 0px 0px 0px 3px rgb(74, 157, 236, 20%);
+            background-color: white;
+          }
+          
+
+        /* .dropdown-section {
+            margin-bottom: 30px;
+        } */
+
+        .dropdown-section select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .buttons-section {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            bottom: 10px;
+            width: 33%;
+            margin-left: 2%;
+        }
+
+        /* .buttons-section {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        } */
+
+        /* .button {
+            flex: 1;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            width: 100px;
+        } */
+
+        .button {
+            padding: 1em 0.2em;
+            margin-right: 10px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            color: #000;
+            background-color: #acaead;
+            border: none;
+            border-radius: 9px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            width: 300px;
+          }
+          
+          .button:hover {
+            background-color: #23c483;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+          }
+          
+          .button:active {
+            transform: translateY(-1px);
+          }
+
+        .images-section {
+            
+            flex: 60%;
+            overflow-y: auto;
+            margin-left: auto;
+        }
+
+        .images-section img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; 
+        }
+
+        .error {
+            border: 3px solid red !important;
+        }
+
+        .success {
+            border: 3px solid green !important;
+        }
+
+        .download-button {
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        background-color: #39835e;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+    }
+
+    .download-button:hover {
+        background-color: #23c483;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+      }
+      
+      .download-button:active {
+        transform: translateY(-1px);
+      }
+        .confidence-score {
+        margin-left: 5px;
+        margin-right: 5px;
+        }
+        .confidence-score.high {
+            color: green;
+        }
+
+        .confidence-score.low {
+            color: red;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+        :root {
+            --tr: all 0.5s ease 0s;
+            --ch1: #05478a;
+            --ch2: #0070e0;
+            --cs1: #005e38;
+            --cs2: #03a65a;
+            --cw1: #c24914;
+            --cw2: #fc8621;
+            --ce1: #851d41;
+            --ce2: #db3056;
+        }
+        
+        .toast-item {
+            /*overflow: hidden;*/
+            max-height: 25rem;
+            transition: var(--tr);
+            animation: show-toast 4s ease 3s 1;
+        }
+        
+        
+        .toast {
+            background: #fff;
+            color: #f5f5f5;
+            padding: 1rem 2rem 1rem 3rem;
+            margin: 1rem 0;
+        text-align: left;
+        max-width: 16rem;
+        box-shadow: 0 0 1.5rem 0 #1a1f4360;
+        position: absolute;
+        border-radius: 1rem;
+        left: 70%;
+        }
+        
+        .toast:before {
+            content: "";
+            position: absolute;
+            width: 0.5rem;
+            height: calc(100% - 1.5rem);
+            top: 0.75rem;
+            left: 0.5rem;
+            z-index: 0;
+            border-radius: 1rem;
+            background: var(--clr);
+        }
+        
+        .toast h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.35rem;
+            font-weight: 600;
+            position: relative;
+            color: var(--clr);
+        }
+        
+        .toast p {
+            position: relative;
+            font-size: 0.95rem;
+            z-index: 1;
+            margin: 0.25rem 0 0;
+            color: #595959;
+            line-height: 1.3rem;
+        }
+        
+        .close {
+            position: absolute;
+            width: 1.35rem;
+            height: 1.35rem;
+            text-align: center;
+            right: 1rem;
+            cursor: pointer;
+            border-radius: 100%;
+        }
+        
+        .close:after {
+            position: absolute;
+            font-family: 'Varela Round', san-serif;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            font-size: 1.8rem;
+            content: "+";
+            transform: rotate(-45deg);
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #595959;
+            text-indent: 1px;
+        }
+        
+        .close:hover:after {
+            background: var(--clr);
+            color: #fff;
+        }
+        
+        
+        
+        .toast.success {
+            --bg: var(--cs1);
+            --clr: var(--cs2);
+            --brd: var(--cs3);
+        }
+        
+        
+        
+        .toast.warning {
+            --bg: var(--cw1);
+            --clr: var(--cw2);
+            --brd: var(--cw3);
+        }
+        
+        .icon-warning:after {
+            content: "!";
+            font-weight: bold;
+        }
+        
+
+
+    
+
+        

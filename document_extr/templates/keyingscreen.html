@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keying Screen</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'keying.css' %}">
+    
+</head>
+
+<body>
+    <div class="toast-item " id = 'success_msg' style="display: none;">
+        <div class="toast success">
+            <label for="t-success" class="close"></label>
+            <h3>Success!</h3>
+            <p >Data Saved successfully.</p>
+        </div>
+    </div>
+    <div class="toast-item " id = 'download_msg' style="display: none;">
+        <div class="toast success">
+            <label for="t-success" class="close"></label>
+            <h3>Success!</h3>
+            <p >Output file downloaded successfully.</p>
+        </div>
+    </div>
+    <div class="toast-item" id = 'warning_msg' style="display: none;">
+        <div class="toast warning">
+            <label for="t-warning" class="close"></label>
+            <h3>Warning!</h3>
+            <p>Please Validate all fields correctly before saving.</p>
+        </div>
+    </div>
+    <div class="toast-item" id = 'closing_msg' style="display: none;">
+        <div class="toast warning">
+            <label for="t-warning" class="close"></label>
+            <h3>Warning!</h3>
+            <p>Closing Keyingscreen.</p>
+        </div>
+    </div>
+   
+
+    <input type="hidden" id="filename" value="{{ file_name }}">
+    <input type="hidden" id="fields_len" value="{{ field_values_dict.keys|length }}">
+
+    
+
+    <div class="form-container">
+        <div class="fields-section" style="padding-bottom:5%;">
+            <a href="{% url 'download' %}?file_name={{ file_name }}" class="download-button" target="_blank" onclick="downloadalert()">Download</a>
+            <div class="dropdown-section">
+                <label for="process-type">Classification:</label>
+                <select id="process-type" name="process-type">
+                    <option value="process1">{{ field_values_dict.DocumentType.0 }}</option>
+
+                    <option value="Deed">Deed2</option>
+
+                </select>
+            </div>
+            <h2 for="process-type">Extraction:</h2>
+            {% for name, value in field_values_dict.items %}
+                <div class="name-field">
+                    <label class="name-label" for="{{ name }}">{{ name }}:<span class="confidence-score {% if value.1 > 50 %}high{% else %}low{% endif %}">
+                        ({{ value.1 }})
+                    </span></label>
+                    
+                    <div class="name-input">
+                        <input type="text" id="{{ name }}" name="{{ name }}" placeholder="Enter {{ name }}" value="{{ value.0 }}" onkeydown="checkTab(event, this)">
+                    </div>
+                    
+                </div>
+            {% endfor %}
+
+            <div class="buttons-section">
+                <button class="button" onclick="suspend()">Suspend</button>
+                <button class="button" onclick="closeBatch()">Close Batch</button>
+                <button class="button" onclick="save()">Save</button>
+            </div>
+        </div>          
+
+        <div class="images-section">
+            <!-- <img src="../static/page_1.jpeg" alt="Image 1">
+            <img src="../static/page_2.jpeg" alt="Image 2"> -->
+            {% if image_urls %}
+            {% for image in image_urls %}
+            <img src="{% static 'images/' %}{{ image }}" alt="Image 1">
+            {% endfor %}
+            {% else %}
+            <img src="{% static 'images/sample.jpg' %}" alt="Image 1">
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function checkTab(event, element) {
+            console.log('inside',element);
+            if (event.key === 'Tab') {
+                console.log('tab');
+                if (element.id === 'BuyerZipcode' || element.id === 'SellerZipcode' || element.id === 'PropertyDetailsBlock' || element.id === 'PropertyDetailsLot'){
+                    if (/[0-9]/.test(element.value)) {
+
+                        element.classList.remove('error');
+                        element.classList.add('success');
+                    } else {
+                        element.classList.remove('success');
+                        element.classList.add('error');
+                    }
+                }
+                else if (/[a-zA-Z]/.test(element.value)) {
+
+                    element.classList.remove('error');
+                    element.classList.add('success');
+                } else {
+                    element.classList.remove('success');
+                    element.classList.add('error');
+                }
+                var formContainer = document.querySelector('.fields-section');
+                formContainer.scrollTop += 25;
+            }
+        }
+        
+        function downloadalert(){
+            var download= document.getElementById('download_msg')
+            download.style.display = 'block'
+            setTimeout(function() {
+                download.style.display = "none";
+            }, 3000);
+        }
+        
+
+
+        function suspend() {
+            alert('Suspend');
+            window.close();
+        }
+
+        async function closeBatch() {
+            async function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            var closing= document.getElementById('closing_msg')
+            closing.style.display = 'block'
+            setTimeout(function() {
+                closing.style.display = "none";
+            }, 2000);
+            await wait(2000);
+            window.close();
+        }
+
+        function save() {
+
+            var successFields = document.querySelectorAll('.name-field input.success');
+            field_len = document.getElementById('fields_len').value;
+            if (successFields.length === parseInt(field_len)) {
+
+                var formData = {};
+
+
+                successFields.forEach(function(field) {
+                    var fieldName = field.getAttribute('name');
+                    var fieldValue = field.value;
+                    formData[fieldName] = fieldValue;
+                });
+
+                var filename = document.getElementById('filename').value;
+                var payload = {
+                        formData: formData,
+                        filename: filename
+                    };
+                
+                fetch("/save_data", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        
+                        body: JSON.stringify(payload),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Server Response:', data);
+                        if (data && data.status === 'success') {
+                            // alert('Data saved');
+                            var success= document.getElementById('success_msg')
+                            success.style.display = 'block'
+                            setTimeout(function() {
+                                success.style.display = "none";
+                            }, 2000);
+                            var downloadButton = document.querySelector('.download-button');
+                            downloadButton.style.display = 'block';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+
+            } else {
+                // alert('Please Validate all fields correctly before saving.');
+                var warning= document.getElementById('warning_msg')
+                warning.style.display = 'block'
+                setTimeout(function() {
+                    warning.style.display = "none";
+                }, 2000);
+            }
+        }
+
+
+        document.getElementById('process-type').addEventListener('change', function () {
+                var selectedProcess = this.value;
+                console.log('selectedProcess', selectedProcess);
+                
+                filename = document.getElementById('filename').value;
+                if (selectedProcess === 'Deed') {
+                    alert('Processing for Process 2');
+
+                    window.location.href = `/keyingscreen?selectedProcess=${selectedProcess}&filename=${filename}`;
+                } else {
+                    alert('Unknown process selected');
+                }
+            });
+
+
+    </script>
+
+</body>
+
+</html>
